@@ -1,0 +1,22 @@
+{
+  "name": "le-centre",
+  "version": "0.2.0",
+  "description": "Le Centre is a dashboard for Ghips project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MARY Lucien",
+  "license": "ISC",
+  "dependencies": {
+    "@serialport/parser-readline": "^9.2.4",
+    "chalk": "^5.0.0",
+    "colors": "^1.4.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "os": "^0.1.2",
+    "serialport": "^9.2.8",
+    "serve-favicon": "^2.5.0"
+  }
+}

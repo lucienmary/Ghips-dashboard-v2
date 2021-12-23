@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #A0CFD3;
+    --secondary-color: #3A4454;
+    --text-color: #8996a3;
+    --bg-color: #f2f2f2;
+    --base-shadow: 0 2px 8px #e6e6e6;
+    --dark-shadow: 0 2px 8px #323945;
+    --base-radius: 24px;
+    --panel-color: white;
+}
+
+body {
+    font-family: 'Ubuntu';
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+}
+
+header {
+    background-color: var(--secondary-color);
+    padding: 12px 24px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--primary-color);
+    /* border-radius: 0 0 25px 25px; */
+
+}
+
+h1 {
+    margin: 0;
+    padding-top: 5px;
+    color: var(--primary-color);
+}
+
+h1 span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.app-title {
+    margin-right: auto;
+}
+
+.signal {
+    margin: 0 12px;
+}
+
+.signal span {
+    width: 10px;
+    height: 10px;
+    border-radius: 12px;
+    display: block;
+    background-color: var(--text-color);
+    margin: 12px auto 0;
+}
+
+.signal p {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+}
+
+a {
+    margin: 10px 0 10px 12px;
+    display: inline-block;
+    background-color: var(--primary-color);
+    padding: 6px 24px;
+    text-decoration: none;
+    color: var(--bg-color);
+    border-radius: var(--base-radius);
+    box-shadow: var(--dark-shadow);
+}
+
+main {
+    margin: 36px 0;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    padding: 8px 24px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+}
+
+.panel {
+    background-color: var(--panel-color);
+    padding: 24px;
+    box-shadow: var(--base-shadow);
+    border-radius: var(--base-radius);
+    border: 1px solid var(--primary-color);
+}
+
+.panel h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.switch {
+    margin: 6px 0 0;
+}
