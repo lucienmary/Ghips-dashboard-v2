@@ -1,5 +1,6 @@
 /* --- Libraries --- */
 #include <dht_nonblocking.h>
+#include <ArduinoJson.h>
 
 /* --- Variables --- */
 
@@ -16,6 +17,10 @@ int lightVal;
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial) continue;
+
+  StaticJsonDocument<200> doc;
+  
   pinMode(ledPin, OUTPUT);
 }
 
@@ -66,4 +71,9 @@ void loop() {
     digitalWrite (ledPin, LOW);
   }
   /* --------- */
+
+  /* JSON */
+  if( measure_environment( &temperature, &humidity ) == true ) {
+    
+  }
 }

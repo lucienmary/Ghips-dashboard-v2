@@ -57,10 +57,18 @@ app.get('/', function(req, res) {
    res.setHeader('Content-Type', 'text/html');
    res.render('dashboard.ejs', {local_ip: ip});
 });
+
 // Page des logs.
 app.get('/logs/', function(req, res) {
    res.setHeader('Content-Type', 'text/html');
    res.render('logs.ejs', {local_ip: ip});
+});
+
+// URL cron data update.
+app.get('/update', function(req, res) {
+   res.setHeader('Content-Type', 'text/html');
+   res.send('{"test0": "lol", "test1": "ok"}');
+   console.log('CRON');
 });
 
 module.exports = app;
