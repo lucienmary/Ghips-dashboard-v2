@@ -50,9 +50,13 @@
         </div>
     </main>
     <footer>
-        <p>Le Centre - Ghips dashboard - IP locale : <%= local_ip %> (port 5000)</p>
+        <p>Le Centre - Ghips dashboard - IP locale : <%= local_ip %> (port <%= local_port %>)</p>
+
+        <input id="input-ip" class="hidden" type="text" value="<%= local_ip %>">
+        <input id="input-port" class="hidden" type="text" value="<%= local_port %>">
     </footer>
 
+    <script src="../public/js/switch.js"></script>
     <script src="../public/js/cron.js"></script>
     <noscript>Sorry, your browser does not support JavaScript.</noscript>
 </body>

@@ -2,26 +2,14 @@ const http = require('http');
 const app = require('./app');
 app.colors = require("colors"); // For console colors/weights/etc.
 
-const normalizePort = val => {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    return val;
-  }
-  if (port >= 0) {
-    return port;
-  }
-  return false;
-};
-const port = normalizePort(process.env.PORT || '5000');
-app.set('port', port);
+app.set('port', app.portListener);
 
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
   }
   const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + app.portListener;
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges.');
@@ -41,7 +29,7 @@ const server = http.createServer(app);
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
+  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + app.portListener;
 
   console.log(app.colors.gray('\n------------------------------------------------------------------------------------------------------------------'));
   console.log(app.colors.red('=================================================================================================================='));
@@ -52,10 +40,10 @@ server.on('listening', () => {
   console.log(app.colors.cyan('         \\______  /___|  /__|   __/____  > /_______  (____  /____  >___|  /___  /\\____(____  /__|  \\____ |      '));
   console.log(app.colors.cyan('                \\/     \\/   |__|       \\/          \\/     \\/     \\/     \\/    \\/           \\/           \\/      '));
   console.log(app.colors.red('=================================================================================================================='));
-  console.log(app.colors.gray('---------------------------------------------- ' + app.ip.toString() + ':5000' + ' --------------------------------------------------\n'));
+  console.log(app.colors.gray(`---------------------------------------------- ${app.ip.toString()}:${app.portListener.toString()} --------------------------------------------------`));
 });
 
-server.listen(port);
+server.listen(app.portListener);
                                                                                                              
                                                                                                              
                                                                                                              

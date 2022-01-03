@@ -9,10 +9,11 @@ app.use("/public", express.static(__dirname + '/public'));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // ----------------------------------------------------------------- //
-// ------------ Recup IP Locale. ----------------------------------- //
+// ------------ local IP recup. ----------------------------------- //
 var ip = getLocalIP();
 
 app.ip = ip;
+app.portListener = 5000;
 
 function getLocalIP() {
  const interfaces = os.networkInterfaces();
@@ -55,20 +56,37 @@ fs.stat("/dev/cu.usbmodem14201", (error, stats) => {
 // Dashboard.
 app.get('/', function(req, res) {
    res.setHeader('Content-Type', 'text/html');
-   res.render('dashboard.ejs', {local_ip: ip});
+   res.render('dashboard.ejs', {local_ip: ip, local_port: app.portListener});
 });
 
 // Page des logs.
 app.get('/logs/', function(req, res) {
    res.setHeader('Content-Type', 'text/html');
-   res.render('logs.ejs', {local_ip: ip});
+   res.render('logs.ejs', {local_ip: ip, local_port: app.portListener});
 });
 
-// URL cron data update.
-app.get('/update', function(req, res) {
-   res.setHeader('Content-Type', 'text/html');
-   res.send('{"test0": "lol", "test1": "ok"}');
-   console.log('CRON');
+// ---------- Exchange data with client. ---------- //
+
+var allDashboardParameters = {'#led-1': 'cheval'};
+
+console.log(allDashboardParameters);
+
+// Activated by client when a button is pulled.
+app.get('/update-server/', function(req, res) {
+
+   for (const [key, value] of Object.entries(req.query)) {
+      allDashboardParameters[key] = value;
+      console.log(allDashboardParameters);
+   }
+
+   res.setHeader('Content-Type', 'text/html').send(req.query);
+   res.status(200).end();
+});
+
+// URL cron data update. 
+app.get('/update-client', function(req, res) {
+   res.setHeader('Content-Type', 'text/html').send(allDashboardParameters);
+   res.status(200).end();
 });
 
 module.exports = app;

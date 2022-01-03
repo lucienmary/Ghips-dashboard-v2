@@ -8,10 +8,7 @@ $( document ).ready(function() {
 
     function cronAssData() {
         $.ajax({
-            url: "/update"
-        }).done(function(data) {
-            var res = JSON.parse(data);
-            console.log(res.test0);
-        });
+            url: "/update-client"
+        }).done((data) => console.log(data))
     }
 });
